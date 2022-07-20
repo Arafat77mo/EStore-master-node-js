@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<% include ../partials/head %>
+	<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+</head>
+<body id="cartbody">
+
+	<header>
+		<% include ../partials/header %>
+	</header>
+
+<div class="row cart-head">
+    <div class="container">
+    <div class="row">
+        <p></p>
+    </div>
+    <div class="row">
+        <p></p>
+    </div>
+    </div>
+</div>   
+
+
+  <h1>Shopping Cart</h1><hr>
+  <table class="table table-striped table-hover table-bordered">
+
+    <%if(typeof result!=='undefined'){%>
+        
+        <tbody>
+            <tr>
+                <th>Item</th>
+                <th>QTY</th>
+                <th>Unit Price</th>
+                <th>Total Price</th>
+            </tr>
+            <tr>
+              <%var subtotal=0%>
+                <%for(var i=0;i<result.length;i++){%>
+                <tr>
+                  <td> <a href="/cart/removecart/<%=result[i].id%>"><i class="glyphicon glyphicon-remove"></i></a> || <%=result[i].productname%></td>              
+                  <td><%=result[i].quantity%></td>
+                  <td>EGp <%=result[i].price%></td>
+                  <td>EGp <%=result[i].quantity*result[i].price%> </td>
+
+                </tr>
+                <%subtotal+=result[i].quantity*result[i].price%>
+                <%}%> 
+            </tr>
+            <tr>
+                <th colspan="3"><span class="pull-right">Total</span></th>
+                <th>EGp <%=subtotal%></th>
+            </tr>
+            
+            <tr>
+                <td><a href="/index" class="btn btn-primary">Continue Shopping</a></td>
+            </tr>
+        </tbody>
+          <%}
+          else{%>
+          <h2 class="text-center">Empty Cart</h2>
+        <%}%>
+    </table>          
+	<hr>
+	<footer class="bg-dark text-white">
+	<% include ../partials/footer %>
+	</footer>
+</body>	
+</html>

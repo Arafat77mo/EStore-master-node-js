@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<% include ../partials/head %>
+</head>
+<body id="details">
+
+	<header>
+		<% include ../partials/header %>
+	</header>	
+<!-- 	<div class="container">
+		<div class="card">
+			<div class="container-fliud">
+				<div class="wrapper row">
+					<div class="preview col-md-6">
+					  <div class="tab-pane active" id="pic-1"><img src="https://i.imgur.com/ruU04I6.jpg" alt="Hello Moni" /></div>
+					</div>
+					<%for(var i=0;i<result.length;i++){%>
+						<div class="details col-md-6">
+							<h3 class="product-title"><%=result[i].productname%></h3>
+							<div class="rating">
+								<div class="stars">
+									<span class="fa fa-star checked"></span>
+									<span class="fa fa-star checked"></span>
+									<span class="fa fa-star checked"></span>
+									<span class="fa fa-star"></span>
+									<span class="fa fa-star"></span>
+								</div>
+							</div>
+							<p class="product-description"><%=result[i].details%></p>
+							<h4 class="price">current price: <span>$<%=result[i].price%></span></h4>
+							<h5 class="sizes">sizes:
+								<span class="size" data-toggle="tooltip" title="small">s</span>
+								<span class="size" data-toggle="tooltip" title="medium">m</span>
+								<span class="size" data-toggle="tooltip" title="large">l</span>
+								<span class="size" data-toggle="tooltip" title="xtra large">xl</span>
+							</h5>
+							<h5 class="colors">colors:
+								<span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
+								<span class="color green"></span>
+								<span class="color blue"></span>
+							</h5>
+							<div class="action">
+								<a class="button" href="/index/addtocart/<%=result[i].id%>">Add to Cart</a>
+								<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+							</div>
+						</div>
+					<%}%>
+				</div>
+			</div>
+		</div>
+	</div>
+ -->
+
+
+
+
+
+
+
+
+
+	<div id="containerdetails">	
+		<%for(var i=0;i<result.length;i++){%>
+		<!-- Start	Product details -->
+		<div class="product-details">
+			<!-- 	Product Name -->
+			<h1><%=result[i].productname%></h1>
+			<!-- 		<span class="hint new">New</span> -->
+			<!-- 		<span class="hint free-shipping">Free Shipping</span> -->
+			<!-- 		the Product rating -->
+			<span class="hint-star star">
+				<i class="fa fa-star" aria-hidden="true"></i>
+				<i class="fa fa-star" aria-hidden="true"></i>
+				<i class="fa fa-star" aria-hidden="true"></i>
+				<i class="fa fa-star-half-o" aria-hidden="true"></i>
+				<i class="fa fa-star-o" aria-hidden="true"></i>
+			</span>	
+			<% if(typeof errorMessage !== 'undefined'){ %>
+				<div class="panel panel-warning">
+					<p class="text-center text-danger"><%= errorMessage.message %></p>
+				</div>
+			<% } %>
+			<form method="post"  action="/cart/addtocart/<%=result[i].id%>">
+				
+				<div class="form-group">
+					<p><strong>Available Quantity: </strong><%=result[i].quantity%></p>
+				    <label for="quantity" class="col-sm-3 control-label font">
+				        Quantity: </label>
+				    <div class="col-sm-8 col-sm-offset-1">
+				        <input type="hidden" id="proid" value="<%=result[i].id%>" name="id">
+				        <input type="text" class="form-control font" id="quantity" value="1" name="quantity">
+				    </div>
+
+				    <!-- 		Control -->
+				    <div class="control">
+				    	<!-- Start Button buying -->
+				    	<button class="btndetails button" type="submit" id='addtocart' onclick="check()">
+				    		<!-- 		the Price -->
+				    		<span class="price">BDT <%=result[i].price%></span>
+				    		<!-- 		shopping cart icon-->
+				    		<span class="shopping-cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
+				    		<!-- 		Buy Now / ADD to Cart-->
+				    		<span class="buy">Add to Cart</span>
+				    	</button>
+				    		<!-- End Button buying -->
+				    </div>
+				</div>
+			</form>		
+		</div>
+				
+			<!-- 	End	Product details   -->
+			<script>
+			function click() {
+			    if(document.getElementById("quantity").value>result[0].quantity)
+			    {
+			    	window.alert('sdhsf');
+			    }
+			}
+			</script>
+				
+			<!-- 	Start product image & Information -->
+				
+			<div class="product-image">
+				
+				<img src="https://sc01.alicdn.com/kf/HTB1Cic9HFXXXXbZXpXXq6xXFXXX3/200006212/HTB1Cic9HFXXXXbZXpXXq6xXFXXX3.jpg" alt="Omar Dsoky">
+					
+				<!-- 	product Information-->
+				<div class="info">
+					<h2>The Description</h2>
+					<ul>
+						<li><strong>Details: </strong><%=result[i].details%></li>
+						<li><strong>Catagory: </strong><%=result[i].catagory%></li>
+					</ul>
+				</div>
+			</div>
+			<!--  End product image  -->
+	</div>
+<%}%>
+
+
+
+
+
+	<hr>
+	<footer class="bg-dark text-white">
+	<% include ../partials/footer %>
+	</footer>
+
+	
+  </body>
+</html>

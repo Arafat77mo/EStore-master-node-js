@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Login</title>
+	<% include ../partials/head %>
+</head>
+
+<body>
+
+	<header>
+		<% include ../partials/header %>
+	</header>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-3">
+				<% include ../partials/sidebar %>
+			</div>
+			<div class="col-md-9 mainresult">
+				<div id="wrap">
+					<div id="columns" class="columns_4">
+						<%if(typeof result!=='undefined'){%>
+						<%for(var i=0;i<result.length;i++){%>
+						<%if(result[i].quantity!=0 && result[i].quantity>0){%>
+						<a href="/index/productdetails/<%=result[i].id%>">
+							<figure>
+								<img src="https://image.shutterstock.com/image-photo/tv-flat-screen-lcd-plasma-260nw-314401364.jpg"
+									alt='Hello Moni'>
+								<figcaption><%=result[i].productname%></figcaption>
+								<p><%=result[i].catagory%></p>
+								<span class="price">$<%=result[i].price%></span>
+								<a href="/index/productdetails/<%=result[i].id%>" class="button" type="submit">Buy
+									Now</a>
+							</figure>
+						</a>
+						<%}%>
+							<%}%>
+						<%}%>
+						<% if(typeof errorMessage !== 'undefined'){ %>
+						<div class="panel panel-warning">
+							<h1 class="text-center text-danger"><span
+									class="glyphicon glyphicon-search text-center"></span><br><%= errorMessage.message %>
+							</h1>
+						</div>
+						<% } %>
+
+					</div>
+				</div>
+			</div>
+			<div class="searchresult col-md-9">
+
+			</div>
+		</div>
+	</div>
+
+
+
+	<hr>
+	<footer class="bg-dark text-white">
+		<% include ../partials/footer %>
+	</footer>
+</body>
+
+</html>
